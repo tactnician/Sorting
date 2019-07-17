@@ -1,8 +1,8 @@
 # TO-DO: complete the helpe function below to merge 2 sorted arrays
 def merge( arrA, arrB ):
-    # elements = len( arrA ) + len( arrB )
-    # merged_arr = [0] * elements
-    merged_arr = []
+    elements = len( arrA ) + len( arrB )
+    merged_arr = [0] * elements
+    # merged_arr = []
     # TO-DO
     
     # merged_arr = arrA + arrB
@@ -10,13 +10,34 @@ def merge( arrA, arrB ):
     a_index = 0
     b_index = 0 
 
-    while a_index < len(arrA) and b_index < len(arrB):
-        if arrA[a_index] <= arrB[b_index]:
-            merged_arr.append(arrA[a_index])
-            a_index += 1
-        else: 
-            merged_arr.append(arrB[b_index])
+    for i in range(0, elements):
+        # check if a or b has already been merged 
+        if a_index >= len(arrA):
+            merged_arr[i] = arrB[b_index]
             b_index += 1
+            print(merged_arr)
+        elif b_index >= len(arrB):
+            merged_arr[i] = arrA[a_index]
+            a_index += 1
+            print(merged_arr)
+        elif arrA[a_index] <= arrB[b_index]:
+            merged_arr[i] = arrA[a_index]
+            a_index += 1
+            print(merged_arr)
+        else: 
+            merged_arr[i] = arrB[b_index]
+            b_index += 1
+            print(merged_arr)
+
+    # while a_index < len(arrA) and b_index < len(arrB):
+    #     if arrA[a_index] <= arrB[b_index]:
+    #         merged_arr.append(arrA[a_index])
+    #         a_index += 1
+    #     else: 
+    #         merged_arr.append(arrB[b_index])
+    #         b_index += 1
+    
+    
     return merged_arr
 
 
@@ -43,9 +64,9 @@ def merge_sort( arr ):
     #     else:
     #         arr2.append(arr[i])
 
-    merge(merge_sort(arr1), merge_sort(arr2))
+    merged = merge(merge_sort(arr1), merge_sort(arr2))
 
-    return arr
+    return merged
     
 # merge_sort([1,2,3,9,7,6,4,5])
 
